@@ -19,6 +19,6 @@ public class Adresses {
 
     @Override
     public String toString(){
-        return city + ", " + street + ", " + house + ", " + floor + " этажейй"
+        return city + ", " + street + ", " + house + ", " + floor + " этажейй";
     }
 }
