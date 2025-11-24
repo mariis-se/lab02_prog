@@ -24,7 +24,7 @@ public class MainApp{
     }
 
     private static void run(String filePath){
-        long Timer = System.currentTimeMillis();
+        long timerStart = System.currentTimeMillis();
 
         try {
             Csv parser = new Csv();
@@ -32,9 +32,22 @@ public class MainApp{
 
             System.out.println("Done, amount: " + addresses.size());
 
+            System.out.println("\nfirst 5 lines:");
+            for (int i = 0; i < Math.min(5, addresses.size()); i++) {
+                System.out.println(addresses.get(i));
+            }
 
 
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("Ошибка: Файл не найден - " + e.getMessage());
+        } catch (java.io.IOException e) {
+            System.out.println("Ошибка чтения файла: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Ошибка: Неверный формат числа в файле - " + e.getMessage());
         }
+
+        long timerEnd = System.currentTimeMillis();
+        System.out.printf("Время обработки: %d мс%n", (timerEnd - timerStart));
 
     }
 
