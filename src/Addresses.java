@@ -1,10 +1,10 @@
-public class Adresses {
+public class Addresses {
     private String city;
     private String street;
     private String house;
     private int floor;
 
-    public Adresses(String city, String street, String house, int floor){
+    public Addresses(String city, String street, String house, int floor){
         this.city = city;
         this.street = street;
         this.house = house;
