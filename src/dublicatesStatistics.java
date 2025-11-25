@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DublicatesStatistics {
+public class dublicatesStatistics {
     public static void findDubles(List<Addresses> addresses){
         System.out.println("Dublicates");
         Map<Addresses, Long> addressCounts = addresses.stream() //<key, value>; list превращаем в поток данных
@@ -19,5 +19,26 @@ public class DublicatesStatistics {
             }
         }
         if (!hasDublicates) {System.out.println("Dublicatis is not found eeeee!)");}
+    }
+
+    public static void floorStatistics (List<Addresses> addresses){
+        // группируем по городам, а внутри по этажам
+        Map<String, Map<Integer, Long>> cityFloorStats = addresses.stream()
+                .collect(Collectors.groupingBy(
+                        Addresses::getCity,
+                        Collectors.groupingBy(
+                                Addresses::getFloor,
+                                Collectors.counting()
+                        )
+                ));
+        for (String city : cityFloorStats.keySet()){
+            System.out.println("\nCity: " + city);
+            Map<Integer, Long> floorMap = cityFloorStats.get(city);
+
+            for (int floor = 1 ; floor < 6 ; floor++){
+                long count = floorMap.getOrDefault(floor, 0L);
+                System.out.printf("  %d-этажных: %d%n", floor, count);
+            }
+        }
     }
 }

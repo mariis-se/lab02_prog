@@ -41,7 +41,8 @@ public class MainApp{
                 System.out.println(addresses.get(i));
             }
             System.out.println("\n");
-            DublicatesStatistics.findDubles(addresses);
+            dublicatesStatistics.findDubles(addresses);
+            dublicatesStatistics.floorStatistics(addresses);
 
 
         } catch (java.io.FileNotFoundException e) {
