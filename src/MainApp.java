@@ -31,7 +31,7 @@ public class MainApp{
         long timerStart = System.currentTimeMillis();
 
         try {
-            Csv parser = new Csv();
+            CsvParser parser = new CsvParser();
             List<Addresses> addresses = parser.parseFile(filePath);
 
             System.out.println("Конец, размер: " + addresses.size());

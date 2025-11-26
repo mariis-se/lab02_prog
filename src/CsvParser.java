@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
 
-public class Csv {
+public class CsvParser implements FileParser{
     public List<Addresses> parseFile(String filePath) throws FileNotFoundException, IOException, NumberFormatException {
         List<Addresses> addresses = new ArrayList<>();
         BufferedReader bufferedReader = null;
