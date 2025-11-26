@@ -9,7 +9,7 @@ public class MainApp{
 
         while (true) {
 //            if (firstTry) {System.out.println("enter text parhfile: ");}
-            System.out.print("\nВведите путь к файлу или exit для выхода: ");
+            System.out.print("\nВведите путь к файлу (или exit для выхода): ");
             String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("exit")){
@@ -27,11 +27,24 @@ public class MainApp{
         scanner.close();
     }
 
+    public static FileParser getParser(String filePath){
+        String lowerCasePath = filePath.toLowerCase();
+
+        if (lowerCasePath.endsWith(".csv")) {
+            return new CsvParser();
+        } else if (lowerCasePath.endsWith(".xml")) {
+            return new XmlParser();
+        } else {
+            throw new IllegalArgumentException("Неподдерживаемый формат файла. Используйте .csv или .xml");
+        }
+    }
+
     private static void run(String filePath){
         long timerStart = System.currentTimeMillis();
 
         try {
-            CsvParser parser = new CsvParser();
+//            CsvParser parser = new CsvParser();
+            FileParser parser = getParser(filePath);
             List<Addresses> addresses = parser.parseFile(filePath);
 
             System.out.println("Конец, размер: " + addresses.size());
@@ -50,7 +63,11 @@ public class MainApp{
         } catch (java.io.IOException e) {
             System.out.println("Ошибка чтения файла: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Ошибка: Неверный формат числа в файле - " + e.getMessage());
+            System.out.println("Ошибка: Неверный формат числа в файле");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Неизвестная ошибка: " + e.getMessage());
         }
 
         long timerEnd = System.currentTimeMillis();
