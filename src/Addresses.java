@@ -33,6 +33,7 @@ public class Addresses {
                 java.util.Objects.equals(street, address.street) &&
                 java.util.Objects.equals(house, address.house);
     }
+
     @Override
     public int hashCode() { //6 быстрая проверка
         return java.util.Objects.hash(city, street, house, floor);

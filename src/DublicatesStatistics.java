@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class dublicatesStatistics {
+public class DublicatesStatistics {
     public static void findDubles(List<Addresses> addresses){
         System.out.println("Dublicates");
         Map<Addresses, Long> addressCounts = addresses.stream() //<key, value>; list превращаем в поток данных
